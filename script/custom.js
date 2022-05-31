@@ -1,28 +1,70 @@
-// Pseudo-code Planning:
-// Goal: computerPlay() randomly returns rock, paper, or scissors.
-// Math.random() -> random num btwn 0 and 0.999...
-// Multiply by 10 -> random num btwn 0 and 9.999...
-// I need the random number to have only 3 options.
-// Divide by 3 -> random num btwn 0 and 3.333...
-// Math.floor() -> random num between 0 1 2 3
-// buuuuuut this skews against 3's favor :/
-// so ditch 3.
-// 0, 1, 2 = rock, paper, scissors
-// 3 = reroll
+const 
+rock = "rock",
+paper = "paper",
+scissors = "scissors",
+winMsg = "You won!",
+loseMsg = "Sucker, you lost!",
+tieMsg = "'Tis a tie!",
+errorMsg = "An error has occured.";
 
 function computerPlay() {
-  let randomNumber = Math.floor(Math.random()*3) // random integer between 0 - 3
+  let randomNumber = Math.floor(Math.random()*3) // random integer between 0 - 2
   // 0, 1, 2 = rock, paper, scissors
-  // 3 = reroll
-  console.log(randomNumber); // it works
-
   if (randomNumber == 0){
-    console.log("rock");
+    console.log("Computer chose " + rock);
+    return rock;
   } else if (randomNumber == 1){
-    console.log("paper");
+    console.log("Computer chose " + paper);
+    return paper;
   } else {
-    console.log("scissors");
+    console.log("Computer chose " + scissors);
+    return scissors;
   }
 }
 
-computerPlay()
+
+function letsPlay(playerSelection, computerSelection) {
+  if (computerSelection == rock){
+    if (playerSelection == rock){
+      console.log(tieMsg);
+    } else if (playerSelection == paper){
+      console.log(winMsg);
+    } else if (playerSelection == scissors){
+      console.log(loseMsg);
+    } else {
+      console.log(errorMsg);
+    }
+  } else if (computerSelection == paper){
+    if (playerSelection == rock){
+      console.log(loseMsg);
+    } else if (playerSelection == paper){
+      console.log(tieMsg);
+    } else if (playerSelection == scissors){
+      console.log(winMsg);
+    } else {
+      console.log(errorMsg);
+    }
+  } else if (computerSelection == scissors){
+    if (playerSelection == rock){
+      console.log(winMsg);
+    } else if (playerSelection == paper){
+      console.log(loseMsg);
+    } else if (playerSelection == scissors){
+      console.log(tieMsg);
+    } else {
+      console.log(errorMsg);
+    }
+  }
+}
+  
+const playerSelection = "rock";
+const computerSelection = computerPlay();
+
+console.log(letsPlay(playerSelection, computerSelection))
+
+// let playerSelection = prompt("Rock, paper, scissors!", "rock");
+//   computerSelection = computerPlay();
+//   console.log(playerSelection)
+//   console.log(computerSelection)
+
+letsPlay()
