@@ -22,49 +22,76 @@ function computerPlay() {
   }
 }
 
-
 function letsPlay(playerSelection, computerSelection) {
+  console.log("You chose " + playerSelection)
   if (computerSelection == rock){
     if (playerSelection == rock){
       console.log(tieMsg);
+      return tieMsg;
     } else if (playerSelection == paper){
       console.log(winMsg);
+      return winMsg;
     } else if (playerSelection == scissors){
       console.log(loseMsg);
+      return loseMsg;
     } else {
-      console.log(errorMsg);
+      return errorMsg;
     }
   } else if (computerSelection == paper){
     if (playerSelection == rock){
       console.log(loseMsg);
+      return loseMsg;
     } else if (playerSelection == paper){
       console.log(tieMsg);
+      return tieMsg;
     } else if (playerSelection == scissors){
       console.log(winMsg);
+      return winMsg;
     } else {
-      console.log(errorMsg);
+      return errorMsg;
     }
   } else if (computerSelection == scissors){
     if (playerSelection == rock){
       console.log(winMsg);
+      return winMsg;
     } else if (playerSelection == paper){
       console.log(loseMsg);
+      return loseMsg;
     } else if (playerSelection == scissors){
       console.log(tieMsg);
+      return tieMsg;
     } else {
-      console.log(errorMsg);
+      return errorMsg;
     }
   }
 }
   
 const playerSelection = "rock";
-const computerSelection = computerPlay();
 
-console.log(letsPlay(playerSelection, computerSelection))
+let playerScore = 0;    // initialize scores
+let computerScore = 0;  // initialize scores
 
-// let playerSelection = prompt("Rock, paper, scissors!", "rock");
-//   computerSelection = computerPlay();
-//   console.log(playerSelection)
-//   console.log(computerSelection)
+function game(){ // game of 5 rounds with scores kept
+  for (let i = 0; i < 5; i++){
+    let choice = prompt("Rock, paper, scissors!");
+    let result = letsPlay(choice.toLowerCase(), computerPlay());
 
-letsPlay()
+    if (result == winMsg){
+      playerScore++;
+    } else if (result == loseMsg){
+      computerScore++;
+    }
+    console.log("Player: " + playerScore + " Computer: " + computerScore);
+  }
+  if (playerScore > computerScore){
+    console.log("Hurray! You defeated the evil computer!");
+  } else if (playerScore < computerScore){
+    console.log("Oof, you got beat by a machine.");
+  } else if (playerScore == computerScore){
+    console.log("There is no winner.");
+  } else {
+    console.log(errorMsg);
+  }
+}
+
+game()
